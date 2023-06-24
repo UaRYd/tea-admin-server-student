@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: dev
+
+  # Jackson框架的配置
+  jackson:
+    # 响应的JSON结果中默认包含什么样的属性
+    default-property-inclusion: non_null
+
+mybatis-plus:
+  mapper-locations: classpath:mappers/**/*.xml
+
+# 服务器的配置
+server:
+  # Servlet（Java用于处理请求的组件）的配置
+  servlet:
+    # 编码配置
+    encoding:
+      # 强制使用指定的编码
+      force: true
+      # 字符集
+      charset: UTF-8
+
+# Knife4j配置
+knife4j:
+  # 开启增强模式
+  enable: true

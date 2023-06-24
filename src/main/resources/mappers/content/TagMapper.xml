@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.tea.admin.server.content.dao.persist.mapper.TagMapper">
+
+    <!-- TagStandardVO getStandardById(Long id); -->
+    <select id="getStandardById" resultMap="StandardResultMap">
+        SELECT
+            id, name, parent_id, enable, sort
+        FROM
+            content_tag
+        WHERE
+            id=#{id}
+    </select>
+
+    <!-- List<TagTypeListItemVO> listTagType() -->
+    <select id="listTagType" resultMap="TagTypeListItemResultMap">
+        SELECT
+            id, name, enable, sort
+        FROM
+            content_tag
+        WHERE
+            parent_id=0
+        ORDER BY
+            sort DESC, id DESC
+    </select>
+
+    <!-- List<TagListItemVO> list(); -->
+    <select id="list" resultMap="TagListItemResultMap">
+        SELECT
+            id,
+            parent_id AS typeId,
+            (SELECT name FROM content_tag WHERE id=typeId) AS typeName,
+            name, enable, sort
+        FROM
+            content_tag
+        WHERE
+            parent_id!=0
+        ORDER BY enable DESC, sort DESC, id DESC
+    </select>
+
+    <resultMap id="StandardResultMap"
+               type="cn.tedu.tea.admin.server.content.pojo.vo.standard.TagStandardVO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="parent_id" property="typeId"/>
+        <result column="enable" property="enable"/>
+        <result column="sort" property="sort"/>
+    </resultMap>
+
+    <resultMap id="TagTypeListItemResultMap"
+               type="cn.tedu.tea.admin.server.content.pojo.vo.list.TagTypeListItemVO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="enable" property="enable"/>
+        <result column="sort" property="sort"/>
+    </resultMap>
+
+    <resultMap id="TagListItemResultMap"
+               type="cn.tedu.tea.admin.server.content.pojo.vo.list.TagListItemVO">
+        <id column="id" property="id"/>
+        <result column="typeId" property="typeId"/>
+        <result column="typeName" property="typeName"/>
+        <result column="name" property="name"/>
+        <result column="enable" property="enable"/>
+        <result column="sort" property="sort"/>
+    </resultMap>
+</mapper>

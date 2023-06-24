@@ -1,0 +1,42 @@
+-- 以下是插入 content_category 表的测试数据
+insert into content_category (name, parent_id, depth, keywords, sort, icon, enable, is_parent, is_display, gmt_create, gmt_modified) VALUES ('推荐', 0, 1, '', 99, '', 1, 0, 1, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+insert into content_category (name, parent_id, depth, keywords, sort, icon, enable, is_parent, is_display, gmt_create, gmt_modified) VALUES ('经验', 0, 1, '', 99, '', 1, 0, 1, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+insert into content_category (name, parent_id, depth, keywords, sort, icon, enable, is_parent, is_display, gmt_create, gmt_modified) VALUES ('功效', 0, 1, '', 99, '', 1, 0, 1, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+insert into content_category (name, parent_id, depth, keywords, sort, icon, enable, is_parent, is_display, gmt_create, gmt_modified) VALUES ('存放', 0, 1, '', 99, '', 1, 0, 1, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+insert into content_category (name, parent_id, depth, keywords, sort, icon, enable, is_parent, is_display, gmt_create, gmt_modified) VALUES ('冲泡', 0, 1, '', 99, '', 1, 0, 1, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+insert into content_category (name, parent_id, depth, keywords, sort, icon, enable, is_parent, is_display, gmt_create, gmt_modified) VALUES ('禁忌', 0, 1, '', 99, '', 1, 0, 1, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+insert into content_category (name, parent_id, depth, keywords, sort, icon, enable, is_parent, is_display, gmt_create, gmt_modified) VALUES ('茶器', 0, 1, '', 99, '', 1, 0, 1, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+insert into content_category (name, parent_id, depth, keywords, sort, icon, enable, is_parent, is_display, gmt_create, gmt_modified) VALUES ('文化', 0, 1, '', 99, '', 1, 0, 1, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+insert into content_category (name, parent_id, depth, keywords, sort, icon, enable, is_parent, is_display, gmt_create, gmt_modified) VALUES ('花茶', 0, 1, '', 99, '', 1, 0, 1, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+
+-- 以下是插入 content_tag 表的测试数据
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('茶叶标签', 0, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('茶器标签', 0, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('经验标签', 0, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('存放标签', 0, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('功效标签', 0, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('冲泡标签', 0, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('禁忌标签', 0, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('红茶', 1, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('绿茶', 1, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('黑茶', 1, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('白茶', 1, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('花茶', 1, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('黄茶', 1, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('乌龙茶', 1, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('普洱茶', 1, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('代用茶', 1, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('再加工茶', 1, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('茶壶', 2, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('茶杯', 2, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('茶筒', 2, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('茶针', 2, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('茶夹', 2, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('茶拨', 2, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('茶则', 2, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('茶漏', 2, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('经验', 3, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('存放', 4, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('功效', 5, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('冲泡', 6, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
+INSERT INTO content_tag (name, parent_id, enable, sort, gmt_create, gmt_modified) VALUES ('禁忌', 7, 1, 99, '2023-06-01 08:00:00', '2023-06-01 08:00:00');
