@@ -28,6 +28,18 @@ public enum ServiceCode {
      * 错误：未知的修改数据失败
      */
     ERROR_UPDATE(50200),
+    /**
+     * 错误：JWT已过期
+     */
+    ERR_JWT_EXPIRED(60000),
+    /**
+     * 错误：JWT验证签名失败，可能使用了伪造的JWT
+     */
+    ERR_JWT_SIGNATURE(60100),
+    /**
+     * 错误：JWT格式错误
+     */
+    ERR_JWT_MALFORMED(60200),
     ERROR_UNKNOWN(99999);
 
 

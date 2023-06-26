@@ -26,7 +26,7 @@ public class JWTTests {
         header.put("typ", "JWT");
 
         claims.put("id", 997);
-        claims.put("username", "programmer");
+        claims.put("username", "XiaoPangDun");
 
         Date date = new Date(System.currentTimeMillis() + 60 * 60 * 1000);
 
@@ -50,7 +50,7 @@ public class JWTTests {
 
     @Test
     void parse() {
-        String jwt = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiYXZhdGFyIjoiaHR0cHM6Ly9pbWcxLmJhaWR1LmNvbS9pdC91PTE3MjAzMzc1NywyMzk4MjkwNzY3JmZtPTI1MyZmbXQ9YXV0byZhcHA9MTM4JmY9SlBFRz93PTUwMCZoPTUwMCIsImV4cCI6MTY4NzcwNDE1MCwiYXV0aG9yaXRpZXMiOiJbe1wiYXV0aG9yaXR5XCI6XCIvYWNjb3VudC91c2VyL2FkZC1uZXdcIn0se1wiYXV0aG9yaXR5XCI6XCIvYWNjb3VudC91c2VyL2RlbGV0ZVwifSx7XCJhdXRob3JpdHlcIjpcIi9hY2NvdW50L3VzZXIvcmVhZFwifSx7XCJhdXRob3JpdHlcIjpcIi9hY2NvdW50L3VzZXIvdXBkYXRlXCJ9LHtcImF1dGhvcml0eVwiOlwiL2NvbnRlbnQvY2F0ZWdvcnkvYWRkLW5ld1wifSx7XCJhdXRob3JpdHlcIjpcIi9jb250ZW50L2NhdGVnb3J5L2RlbGV0ZVwifSx7XCJhdXRob3JpdHlcIjpcIi9jb250ZW50L2NhdGVnb3J5L3JlYWRcIn0se1wiYXV0aG9yaXR5XCI6XCIvY29udGVudC9jYXRlZ29yeS91cGRhdGVcIn0se1wiYXV0aG9yaXR5XCI6XCIvY29udGVudC90YWcvYWRkLW5ld1wifSx7XCJhdXRob3JpdHlcIjpcIi9jb250ZW50L3RhZy9kZWxldGVcIn0se1wiYXV0aG9yaXR5XCI6XCIvY29udGVudC90YWcvcmVhZFwifSx7XCJhdXRob3JpdHlcIjpcIi9jb250ZW50L3RhZy91cGRhdGVcIn1dIiwidXNlcm5hbWUiOiJyb290In0.W1yCO-m1oRYdbvdB66Jx9_5iVosYhWd_O1f7OSHNxms";
+        String jwt = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OTk3LCJleHAiOjE2ODc3ODM2NjMsInVzZXJuYW1lIjoiWGlhb1BhbmdEdW4ifQ.34Ho_2Z7WhEztAxSj1lGhu1rLeSWUsvpOySQqdAgkEw";
 
         Claims claims = Jwts.parser()
                 .setSigningKey(key)

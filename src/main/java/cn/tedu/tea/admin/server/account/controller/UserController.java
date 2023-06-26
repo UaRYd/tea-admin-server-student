@@ -64,7 +64,7 @@ public class UserController {
     @PreAuthorize("hasAuthority('/account/user/add-new')")
     @ApiOperation("添加用户")
     @ApiOperationSupport(order = 100)
-    public JsonResult addNew(@Valid UserAddNewParam userAddNewParam) {
+    public JsonResult addNew(@Validated UserAddNewParam userAddNewParam) {
         log.debug("开始处理【添加用户】的请求，参数：{}", userAddNewParam);
         userService.addNewUser(userAddNewParam);
         return JsonResult.ok();

@@ -38,6 +38,7 @@ import java.util.Map;
 @Slf4j
 @Service
 public class UserServiceImpl implements IUserService {
+
     Map<String, Object> header = new HashMap();
     Map<String, Object> claims = new HashMap();
 
@@ -79,8 +80,6 @@ public class UserServiceImpl implements IUserService {
 
         log.debug("验证用户登录成功，返回的认证结果：{}", authenticateResult);
 
-        Date date = new Date(System.currentTimeMillis() + 1L * 60 * 1000 * durationInMinute);
-
         header.put("typ", "JWT");
         header.put("alg", "HS256");
 
@@ -94,7 +93,8 @@ public class UserServiceImpl implements IUserService {
         claims.put("username", userDetails.getUsername());
         claims.put("avatar", userDetails.getAvatar());
         claims.put("authorities", authorities);
-        
+
+        Date date = new Date(System.currentTimeMillis() + 1L * 60 * 1000 * durationInMinute);
 
         String jwt = Jwts.builder()
                 .setHeaderParams(header)
@@ -122,6 +122,13 @@ public class UserServiceImpl implements IUserService {
         /* 逻辑判断环节结束 */
         User user = new User();
         BeanUtils.copyProperties(userAddNewParam, user);
+
+        /* 密码加密开始 */
+        String rawPassword = user.getPassword();
+        String encodedPassword = passwordEncoder.encode(rawPassword);
+        user.setPassword(encodedPassword);
+        /* 密码加密结束 */
+
         int rows = userDetailsRepository.addNewUser(user);
         if (rows != 1) {
             String message = "新增用户失败，服务器忙，请稍后再试！";

@@ -1,5 +1,6 @@
 package cn.tedu.tea.admin.server.content.controller;
 
+import cn.tedu.tea.admin.server.account.security.CurrentPrincipal;
 import cn.tedu.tea.admin.server.common.pojo.vo.PageData;
 import cn.tedu.tea.admin.server.common.web.JsonResult;
 import cn.tedu.tea.admin.server.content.pojo.param.TagAddNewParam;
@@ -18,8 +19,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 @Slf4j
 @RestController
@@ -128,8 +131,9 @@ public class TagController {
     })
     @GetMapping("")
     @PreAuthorize("hasAuthority('/content/tag/read')")
-    public JsonResult list(Integer page, String queryType) {
+    public JsonResult list(Integer page, String queryType, @AuthenticationPrincipal @ApiIgnore CurrentPrincipal principal) {
         log.debug("开始处理【查询标签列表】请求，页码：{}", page);
+        log.debug("当事人：{}",principal);
         if (page == null) {
             page = 1;
         }

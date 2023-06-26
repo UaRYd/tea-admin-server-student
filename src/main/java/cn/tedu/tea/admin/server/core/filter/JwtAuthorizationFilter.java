@@ -1,5 +1,6 @@
 package cn.tedu.tea.admin.server.core.filter;
 
+import cn.tedu.tea.admin.server.account.security.CurrentPrincipal;
 import com.alibaba.fastjson.JSON;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwt;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -56,21 +58,21 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         Jwt result = Jwts.parser().setSigningKey(key).parse(jwt);
         Claims claims = (Claims) result.getBody();
 
-          // 4、获取账号 id
+          // 4、获取账号信息
         Long id = claims.get("id", Long.class);
-
-          // 5、获取账号用户名
         String username = claims.get("username", String.class);
+            //4.1、封装账号信息
+        CurrentPrincipal principal = new CurrentPrincipal(username, id);
 
-          // 6、获取账号权限
+          // 5、获取账号权限
         String authoritiesString = claims.get("authorities", String.class);
-            // 6.1、打包账号权限
-        List<? extends GrantedAuthority> authorities = JSON.parseArray(authoritiesString, GrantedAuthority.class);
+            // 5.1、封装账号权限
+        List<SimpleGrantedAuthority> authorities = JSON.parseArray(authoritiesString, SimpleGrantedAuthority.class);
 
-          // 7、合并到 Authentication
-        Authentication authentication = new UsernamePasswordAuthenticationToken(username, null, authorities);
+          // 6、合并到 Authentication
+        Authentication authentication = new UsernamePasswordAuthenticationToken(principal, null, authorities);
 
-          // 8、将Authentication对象存入到SecurityContext中
+          // 7、将Authentication对象存入到SecurityContext中
         SecurityContext securityContext = SecurityContextHolder.getContext();
         securityContext.setAuthentication(authentication);
         /* 逻辑处理结束 */
