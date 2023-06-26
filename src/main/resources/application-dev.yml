@@ -17,3 +17,8 @@ server:
 tea-store:
   dao:
     default-query-page-size: 5
+  jwt:
+    # JWT的secretKey
+    key: AAxs3s4vd5bf6gnh8uui,9i,l.LP-0,IJ8Uh7hgb6tfr54eSx3Wwza3wxsr5nhu8MJ,I
+    # JWT的有效时长，以分钟为单位
+    durationInMinute: 86400

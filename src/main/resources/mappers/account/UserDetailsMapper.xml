@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.tea.admin.server.account.dao.persist.mapper.UserDetailsMapper">
+
+    <!-- int insertBatch(List<User> userList); -->
+    <insert id="insertBatch" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO account_user (
+        username, password, nickname, avatar, phone,
+        email, description, enable, last_login_ip, login_count,
+        gmt_last_login
+        ) VALUES
+        <foreach collection="list" item="user" separator=",">
+            (
+            #{user.username}, #{user.password}, #{user.nickname}, #{user.avatar}, #{user.phone},
+            #{user.email}, #{user.description}, #{user.enable}, #{user.lastLoginIp}, #{user.loginCount},
+            #{user.gmtLastLogin}
+            )
+        </foreach>
+    </insert>
+
+    <!-- UserStandardVO getStandardById(Long id); -->
+    <select id="getStandardById" resultMap="StandardResultMap">
+        SELECT
+        <include refid="StandardQueryFields"/>
+        FROM
+        account_user
+        WHERE
+        id=#{id}
+    </select>
+
+    <!-- List<AdminListItemVO> list(); -->
+    <select id="list" resultMap="ListResultMap">
+        SELECT
+        <include refid="ListQueryFields"/>
+        FROM
+        account_user
+        ORDER BY
+        id
+    </select>
+
+    <sql id="StandardQueryFields">
+        <if test="true">
+            id, username, nickname, avatar, phone,
+            email, description, enable, last_login_ip, login_count,
+            gmt_last_login
+        </if>
+    </sql>
+
+    <sql id="ListQueryFields">
+        <if test="true">
+            id, username, nickname, avatar, phone,
+            email, description, enable, last_login_ip, login_count,
+            gmt_last_login
+        </if>
+    </sql>
+
+    <resultMap id="StandardResultMap" type="cn.tedu.tea.admin.server.account.pojo.vo.UserStandardVO">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="nickname" property="nickname"/>
+        <result column="avatar" property="avatar"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="description" property="description"/>
+        <result column="enable" property="enable"/>
+        <result column="last_login_ip" property="lastLoginIp"/>
+        <result column="login_count" property="loginCount"/>
+        <result column="gmt_last_login" property="gmtLastLogin"/>
+    </resultMap>
+
+    <!-- UserLoginInfoVO getLoginInfoByUsername(String username); -->
+    <select id="getLoginInfoByUsername" resultMap="LoginInfoResultMap">
+        SELECT
+            account_user.id,
+            account_user.username,
+            account_user.password,
+            account_user.nickname,
+            account_user.avatar,
+            account_user.enable,
+            account_permission.value
+        FROM
+            account_user
+                LEFT JOIN account_user_role ON account_user.id=account_user_role.user_id
+                LEFT JOIN account_role_permission ON account_user_role.role_id=account_role_permission.role_id
+                LEFT JOIN account_permission ON account_role_permission.permission_id=account_permission.id
+        WHERE
+            username=#{username}
+    </select>
+
+    <resultMap id="LoginInfoResultMap"
+               type="cn.tedu.tea.admin.server.account.pojo.vo.UserDetailsLoginInfoVO">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="nickname" property="nickname"/>
+        <result column="avatar" property="avatar"/>
+        <result column="enable" property="enable"/>
+        <collection property="permissions" ofType="java.lang.String">
+            <constructor>
+                <arg column="value"/>
+            </constructor>
+        </collection>
+    </resultMap>
+
+    <resultMap id="ListResultMap" type="cn.tedu.tea.admin.server.account.pojo.vo.UserListItemVO">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="nickname" property="nickname"/>
+        <result column="avatar" property="avatar"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="description" property="description"/>
+        <result column="enable" property="enable"/>
+        <result column="last_login_ip" property="lastLoginIp"/>
+        <result column="login_count" property="loginCount"/>
+        <result column="gmt_last_login" property="gmtLastLogin"/>
+    </resultMap>
+
+</mapper>
