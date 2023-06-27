@@ -1,7 +1,6 @@
 package cn.tedu.tea.admin.server.account.dao.persist.repository;
 
 import cn.tedu.tea.admin.server.account.pojo.entity.User;
-import cn.tedu.tea.admin.server.account.pojo.param.UserAddNewParam;
 import cn.tedu.tea.admin.server.account.pojo.vo.UserDetailsLoginInfoVO;
 import cn.tedu.tea.admin.server.account.pojo.vo.UserListItemVO;
 import cn.tedu.tea.admin.server.account.pojo.vo.UserStandardVO;

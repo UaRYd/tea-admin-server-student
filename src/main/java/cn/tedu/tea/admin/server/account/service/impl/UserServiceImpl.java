@@ -6,6 +6,7 @@ import cn.tedu.tea.admin.server.account.pojo.entity.User;
 import cn.tedu.tea.admin.server.account.pojo.param.UserAddNewParam;
 import cn.tedu.tea.admin.server.account.pojo.param.UserLoginInfoParam;
 import cn.tedu.tea.admin.server.account.pojo.vo.UserListItemVO;
+import cn.tedu.tea.admin.server.account.pojo.vo.UserLoginResultVO;
 import cn.tedu.tea.admin.server.account.pojo.vo.UserStandardVO;
 import cn.tedu.tea.admin.server.account.security.CustomUserDetails;
 import cn.tedu.tea.admin.server.account.service.IUserService;
@@ -68,7 +69,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public String login(UserLoginInfoParam userLoginInfoParam) {
+    public UserLoginResultVO login(UserLoginInfoParam userLoginInfoParam) {
         log.debug("开始处理【用户登录】的业务，参数：{}", userLoginInfoParam);
         Authentication authentication = new UsernamePasswordAuthenticationToken(
                 userLoginInfoParam.getUsername(), userLoginInfoParam.getPassword());
@@ -103,7 +104,14 @@ public class UserServiceImpl implements IUserService {
                 .signWith(SignatureAlgorithm.HS256, key)
                 .compact();
 
-        return jwt;
+        UserLoginResultVO userLoginResultVO = new UserLoginResultVO();
+
+        userLoginResultVO.setId(userDetails.getId());
+        userLoginResultVO.setAvatar(userDetails.getAvatar());
+        userLoginResultVO.setUsername(userDetails.getUsername());
+        userLoginResultVO.setJwt(jwt);
+
+        return userLoginResultVO;
 
 //        log.debug("准备将认证信息结果存入到 SecurityContext 中……");
 //
@@ -156,7 +164,7 @@ public class UserServiceImpl implements IUserService {
         }
 
         log.debug("即将执行删除关联数据，参数：{}", id);
-        rows = userRoleRepository.deleteByAdminId(id);
+        rows = userRoleRepository.deleteByUserId(id);
         if (rows < 1) {
             String message = "删除用户失败，服务器忙，请稍后再尝试！";
             log.warn(message);

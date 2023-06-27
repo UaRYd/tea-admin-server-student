@@ -34,10 +34,10 @@ public class UserRoleRepositoryImpl implements IUserRoleRepository {
     }
 
     @Override
-    public int deleteByAdminId(Long adminId) {
-        log.debug("开始执行【根据用户ID删除用户与角色的关联数据】的数据访问，参数：{}", adminId);
+    public int deleteByUserId(Long userId) {
+        log.debug("开始执行【根据用户ID删除用户与角色的关联数据】的数据访问，参数：{}", userId);
         QueryWrapper<UserRole> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("user_id", adminId);
+        queryWrapper.eq("user_id", userId);
         return userRoleMapper.delete(queryWrapper);
     }
 }

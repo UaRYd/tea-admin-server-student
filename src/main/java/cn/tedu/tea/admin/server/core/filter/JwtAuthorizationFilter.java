@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -52,6 +51,8 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             // 放行
             filterChain.doFilter(httpServletRequest, httpServletResponse);
             return;
+        } else {
+            log.warn("jwt 数据合法，将加载 jwt");
         }
 
           // 3、解析 JWT 数据

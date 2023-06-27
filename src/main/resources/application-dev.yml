@@ -22,3 +22,17 @@ tea-store:
     key: AAxs3s4vd5bf6gnh8uui,9i,l.LP-0,IJ8Uh7hgb6tfr54eSx3Wwza3wxsr5nhu8MJ,I
     # JWT的有效时长，以分钟为单位
     durationInMinute: 86400
+  # 文件上传
+  upload:
+    # 对外访问的主机，必须使用 / 作为最后一个字符
+    host: http://localhost:${server.port}/
+    # 上传的根级文件夹名称，必须使用 / 作为最后一个字符
+    root-dir-name: C:\Users\O\Desktop\test\
+    # 上传的文件夹名称，也会作为访问资源时的 URL 第 1 级目录名，必须使用 / 作为最后一个字符
+    base-dir-name: resources\
+    # 文章图片
+    article-image:
+      # 允许的文件类型，必须配置文件类型的MIME值，多种类型使用英文的逗号分隔
+      types: image/jpeg, image/png, image/gif
+      # 最大尺寸，单位：MB
+      max-size: 5

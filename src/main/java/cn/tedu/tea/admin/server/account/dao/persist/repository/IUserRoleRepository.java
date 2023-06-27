@@ -26,5 +26,5 @@ public interface IUserRoleRepository {
      * @param adminId 用户id
      * @return 受影响的行数
      */
-    int deleteByAdminId(Long adminId);
+    int deleteByUserId(Long adminId);
 }

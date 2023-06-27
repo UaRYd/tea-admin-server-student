@@ -3,6 +3,7 @@ package cn.tedu.tea.admin.server.account.service;
 import cn.tedu.tea.admin.server.account.pojo.param.UserAddNewParam;
 import cn.tedu.tea.admin.server.account.pojo.param.UserLoginInfoParam;
 import cn.tedu.tea.admin.server.account.pojo.vo.UserListItemVO;
+import cn.tedu.tea.admin.server.account.pojo.vo.UserLoginResultVO;
 import cn.tedu.tea.admin.server.account.pojo.vo.UserStandardVO;
 import cn.tedu.tea.admin.server.common.pojo.vo.PageData;
 
@@ -13,7 +14,7 @@ public interface IUserService {
      */
     String ENABLE_TEXT[] = {"禁用", "启用"};
 
-    String login(UserLoginInfoParam userLoginInfoParam);
+    UserLoginResultVO login(UserLoginInfoParam userLoginInfoParam);
 
     void addNewUser(UserAddNewParam userAddNewParam);
 

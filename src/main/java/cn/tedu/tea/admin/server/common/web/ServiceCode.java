@@ -40,6 +40,18 @@ public enum ServiceCode {
      * 错误：JWT格式错误
      */
     ERR_JWT_MALFORMED(60200),
+    /**
+     * 错误：上传的文件为空（没有选择有效的文件）
+     */
+    ERROR_UPLOAD_EMPTY(90000),
+    /**
+     * 错误：上传的文件类型有误
+     */
+    ERROR_UPLOAD_INVALID_TYPE(90100),
+    /**
+     * 错误：上传的文件超出限制
+     */
+    ERROR_UPLOAD_EXCEED_MAX_SIZE(90200),
     ERROR_UNKNOWN(99999);
 
 
