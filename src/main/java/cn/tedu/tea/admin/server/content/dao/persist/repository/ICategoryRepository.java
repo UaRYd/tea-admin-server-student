@@ -17,7 +17,7 @@ public interface ICategoryRepository {
 
     //int deleteByIds(Collection<Long> idList);
 
-    int update(Category category);
+    int updateById(Category category);
 
     //int count();
 

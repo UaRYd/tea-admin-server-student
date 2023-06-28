@@ -27,7 +27,7 @@ public class CategoryRepositoryImpl implements ICategoryRepository {
     }
 
     @Override
-    public int update(Category category) {
+    public int updateById(Category category) {
         log.debug("开始执行【更新类别】的数据访问，参数：{}", category);
         return categoryMapper.updateById(category);
     }
