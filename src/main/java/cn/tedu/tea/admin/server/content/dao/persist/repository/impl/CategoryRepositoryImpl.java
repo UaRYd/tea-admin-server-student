@@ -3,6 +3,7 @@ package cn.tedu.tea.admin.server.content.dao.persist.repository.impl;
 import cn.tedu.tea.admin.server.content.dao.persist.mapper.CategoryMapper;
 import cn.tedu.tea.admin.server.content.dao.persist.repository.ICategoryRepository;
 import cn.tedu.tea.admin.server.content.pojo.entity.Category;
+import cn.tedu.tea.admin.server.content.pojo.vo.standard.CategoryStandardVO;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,4 +26,15 @@ public class CategoryRepositoryImpl implements ICategoryRepository {
         return categoryMapper.insert(category);
     }
 
+    @Override
+    public int update(Category category) {
+        log.debug("开始执行【更新类别】的数据访问，参数：{}", category);
+        return categoryMapper.updateById(category);
+    }
+
+    @Override
+    public CategoryStandardVO getStandardById(Long id) {
+        log.debug("开始执行【根据ID查询类别信息】的数据访问，参数：{}", id);
+        return categoryMapper.getStandardById(id);
+    }
 }
