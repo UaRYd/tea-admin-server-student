@@ -2,6 +2,7 @@ package cn.tedu.tea.admin.server.account.controller;
 
 import cn.tedu.tea.admin.server.account.pojo.param.UserAddNewParam;
 import cn.tedu.tea.admin.server.account.pojo.param.UserLoginInfoParam;
+import cn.tedu.tea.admin.server.account.pojo.vo.UserStandardVO;
 import cn.tedu.tea.admin.server.account.service.IUserService;
 import cn.tedu.tea.admin.server.common.web.JsonResult;
 import lombok.extern.slf4j.Slf4j;
@@ -45,4 +46,31 @@ public class UserController {
         return JsonResult.ok();
     }
 
+    @PostMapping("/delById")
+    public JsonResult delById(Long id) {
+        log.debug("开始处理【根据 ID 删除用户】的请求，参数：{}", id);
+        userService.delById(id);
+        return JsonResult.ok();
+    }
+
+    @PostMapping("/enableById")
+    public JsonResult enableById(Long id) {
+        log.debug("开始处理【根据 ID 开启用户】的请求，参数：{}", id);
+        userService.enableById(id);
+        return JsonResult.ok();
+    }
+
+    @PostMapping("/disableById")
+    public JsonResult disableById(Long id) {
+        log.debug("开始处理【根据 ID 删除用户】的请求，参数：{}", id);
+        userService.disableById(id);
+        return JsonResult.ok();
+    }
+
+    @PostMapping("/getStandardById")
+    public JsonResult getStandardById(Long id) {
+        log.debug("开始处理【根据 ID 查询用户】的请求，参数：{}", id);
+        UserStandardVO userStandardVO = userService.getStandardById(id);
+        return JsonResult.ok(userStandardVO);
+    }
 }

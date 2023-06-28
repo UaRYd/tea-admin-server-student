@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.tedu.tea.admin.server.account.dao.persist.mapper.UserDetailsMapper">
+    <!--    UserStandardVO getStandardById(Long id);-->
+    <select id="getStandardById" resultMap="StandardResultMap">
+        SELECT username, nickname, avatar, phone,
+               email, description, enable, last_login_ip,
+               login_count, gmt_last_login, gmt_create, gmt_modified
+        FROM account_user
+        WHERE id=#{id}
+    </select>
 
     <!-- UserLoginInfoVO getLoginInfoByUsername(String username); -->
     <select id="getLoginInfoByUsername" resultMap="LoginInfoResultMap">
@@ -35,6 +43,23 @@
                 <arg column="value"/>
             </constructor>
         </collection>
+    </resultMap>
+
+    <resultMap id="StandardResultMap"
+               type="cn.tedu.tea.admin.server.account.pojo.vo.UserStandardVO">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="phone" property="phone"/>
+        <result column="nickname" property="nickname"/>
+        <result column="avatar" property="avatar"/>
+        <result column="email" property="email"/>
+        <result column="description" property="description"/>
+        <result column="enable" property="enable"/>
+        <result column="last_login_ip" property="lastLoginIp"/>
+        <result column="login_count" property="loginCount"/>
+        <result column="gmt_last_login" property="gmtLastLogin"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modified" property="gmtModified"/>
     </resultMap>
 
 </mapper>

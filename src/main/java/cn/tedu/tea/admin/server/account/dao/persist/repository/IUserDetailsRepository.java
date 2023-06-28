@@ -3,6 +3,7 @@ package cn.tedu.tea.admin.server.account.dao.persist.repository;
 import cn.tedu.tea.admin.server.account.pojo.entity.User;
 import cn.tedu.tea.admin.server.account.pojo.param.UserAddNewParam;
 import cn.tedu.tea.admin.server.account.pojo.vo.UserDetailsLoginInfoVO;
+import cn.tedu.tea.admin.server.account.pojo.vo.UserStandardVO;
 
 /**
  * 处理用户数据的存储库接口
@@ -21,4 +22,12 @@ public interface IUserDetailsRepository {
     UserDetailsLoginInfoVO getLoginInfoByUsername(String username);
 
     int addNewUser(User user);
+
+    int delById(Long id);
+
+    int enableById(Long id);
+
+    int disableById(Long id);
+
+    UserStandardVO getStandardById(Long id);
 }

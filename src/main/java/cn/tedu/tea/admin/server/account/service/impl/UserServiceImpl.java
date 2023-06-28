@@ -5,6 +5,7 @@ import cn.tedu.tea.admin.server.account.dao.persist.repository.IUserDetailsRepos
 import cn.tedu.tea.admin.server.account.pojo.entity.User;
 import cn.tedu.tea.admin.server.account.pojo.param.UserAddNewParam;
 import cn.tedu.tea.admin.server.account.pojo.param.UserLoginInfoParam;
+import cn.tedu.tea.admin.server.account.pojo.vo.UserStandardVO;
 import cn.tedu.tea.admin.server.account.service.IUserService;
 import cn.tedu.tea.admin.server.common.ex.ServiceException;
 import cn.tedu.tea.admin.server.common.web.ServiceCode;
@@ -72,5 +73,70 @@ public class UserServiceImpl implements IUserService {
             log.warn(message);
             throw new ServiceException(ServiceCode.ERROR_INSERT, message);
         }
+    }
+
+    @Override
+    public void delById(Long id) {
+        log.debug("开始处理【根据 ID 删除用户】的业务，参数：{}", id);
+
+        /* 逻辑判断环节开始 */
+
+        /* 逻辑判断环节结束 */
+
+        int rows = userDetailsRepository.delById(id);
+        if (rows != 1) {
+            String message = "删除用户失败，服务器忙，请稍后再试！";
+            log.warn(message);
+            throw new ServiceException(ServiceCode.ERROR_DELETE, message);
+        }
+    }
+
+    @Override
+    public void enableById(Long id) {
+        log.debug("开始处理【根据 ID 启用用户】的业务，参数：{}", id);
+
+        /* 逻辑判断环节开始 */
+
+        /* 逻辑判断环节结束 */
+
+        int rows = userDetailsRepository.enableById(id);
+        if (rows != 1) {
+            String message = "启用用户失败，服务器忙，请稍后再试！";
+            log.warn(message);
+            throw new ServiceException(ServiceCode.ERROR_UPDATE, message);
+        }
+    }
+
+    @Override
+    public void disableById(Long id) {
+        log.debug("开始处理【根据 ID 禁用用户】的业务，参数：{}", id);
+
+        /* 逻辑判断环节开始 */
+
+        /* 逻辑判断环节结束 */
+
+        int rows = userDetailsRepository.disableById(id);
+        if (rows != 1) {
+            String message = "禁用用户失败，服务器忙，请稍后再试！";
+            log.warn(message);
+            throw new ServiceException(ServiceCode.ERROR_UPDATE, message);
+        }
+    }
+
+    @Override
+    public UserStandardVO getStandardById(Long id) {
+        log.debug("开始处理【根据 ID 查询用户】的业务，参数：{}", id);
+
+        /* 逻辑判断环节开始 */
+
+        /* 逻辑判断环节结束 */
+
+        UserStandardVO userStandardVO = userDetailsRepository.getStandardById(id);
+        if (userStandardVO == null) {
+            String message = "查询用户失败，服务器忙，请稍后再试！";
+            log.warn(message);
+            throw new ServiceException(ServiceCode.ERROR_SELECT, message);
+        }
+        return userStandardVO;
     }
 }

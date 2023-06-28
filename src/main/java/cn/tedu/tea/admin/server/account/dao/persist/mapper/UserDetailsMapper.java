@@ -1,8 +1,8 @@
 package cn.tedu.tea.admin.server.account.dao.persist.mapper;
 
 import cn.tedu.tea.admin.server.account.pojo.entity.User;
-import cn.tedu.tea.admin.server.account.pojo.param.UserAddNewParam;
 import cn.tedu.tea.admin.server.account.pojo.vo.UserDetailsLoginInfoVO;
+import cn.tedu.tea.admin.server.account.pojo.vo.UserStandardVO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 
@@ -22,4 +22,6 @@ public interface UserDetailsMapper extends BaseMapper<User> {
      * @return 匹配的登录信息，如果没有匹配的数据，则返回null
      */
     UserDetailsLoginInfoVO getLoginInfoByUsername(String username);
+
+    UserStandardVO getStandardById(Long id);
 }
