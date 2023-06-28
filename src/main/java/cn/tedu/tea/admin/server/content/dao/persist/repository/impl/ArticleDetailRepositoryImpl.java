@@ -2,6 +2,8 @@ package cn.tedu.tea.admin.server.content.dao.persist.repository.impl;
 
 import cn.tedu.tea.admin.server.content.dao.persist.mapper.ArticleDetailMapper;
 import cn.tedu.tea.admin.server.content.dao.persist.repository.IArticleDetailRepository;
+import cn.tedu.tea.admin.server.content.pojo.entity.ArticleDetail;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

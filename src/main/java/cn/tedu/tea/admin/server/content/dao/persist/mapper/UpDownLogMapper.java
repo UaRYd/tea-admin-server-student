@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UpDownLogMapper extends BaseMapper<UpDownLog> {
     UpDownLogStandardVO getStandardById(Long id);
+
 }
