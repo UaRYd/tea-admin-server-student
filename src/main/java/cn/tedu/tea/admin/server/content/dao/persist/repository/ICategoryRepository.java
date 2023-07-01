@@ -27,7 +27,7 @@ public interface ICategoryRepository {
 
     CategoryStandardVO getStandardById(Long id);
 
-    //List<CategoryListItemVO> list();
+    List<CategoryListItemVO> list();
 
     //PageData<CategoryListItemVO> list(Integer pageNum, Integer pageSize);
 
