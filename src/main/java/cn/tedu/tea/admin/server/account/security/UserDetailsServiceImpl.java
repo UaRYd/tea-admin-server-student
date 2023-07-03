@@ -28,7 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         log.debug("准备调用AuthenticationManager的认证方法，判断此用户名、密码是否可以成功登录……");
-        log.debug("Spring Security框架自动调用了UserDetailsService对象，将根据用户名获取用户详情，参数：{}", s);
+        log.debug("Spring Security框架自动调用了 UserDetailsService 对象，将根据用户名获取用户详情，参数：{}", s);
         UserDetailsLoginInfoVO loginInfo = userDetailsRepository.getLoginInfoByUsername(s);
         log.debug("根据用户名【{}】从数据库中查询用户详情，查询结果：{}", s, loginInfo);
 

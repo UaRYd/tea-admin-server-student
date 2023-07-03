@@ -62,57 +62,53 @@ public class CategoryServiceImpl implements ICategoryService {
     @Override
     public List<CategoryTreeItemVO> listTree() {
         log.debug("开始处理【获取类别树】的业务，参数：无");
-        List<CategoryTreeItemVO> categoryTree = new ArrayList<>();
+        List<CategoryTreeItemVO> listCategoryTreeItemVO = new ArrayList<>();
 
-        List<CategoryListItemVO> categoryList = categoryRepository.list();
-        Map<Long, CategoryListItemVO> categoryMap = transformListToMap(categoryList);
-        Set<Long> keySet = categoryMap.keySet();
-        for (Long key : keySet) {
-            CategoryListItemVO categoryListItemVO = categoryMap.get(key);
-            if (categoryListItemVO.getParentId() == 0) {  // 只对根目录项目进行处理
-                CategoryTreeItemVO categoryTreeItemVO = convertListItemToTreeItem(categoryListItemVO);
-                categoryTree.add(categoryTreeItemVO);
+        List<CategoryListItemVO> listCategoryListItemVO = categoryRepository.list();
+        Map<Long, CategoryListItemVO> mapLongCategoryListItemVO = transformListToMap(listCategoryListItemVO);
+        Set<Long> setKey = mapLongCategoryListItemVO.keySet();
 
-                fillChildren(categoryListItemVO, categoryTreeItemVO, categoryMap);
+        for (Long key : setKey) {
+            CategoryListItemVO categoryListItemVO = mapLongCategoryListItemVO.get(key);
+            if (categoryListItemVO.getParentId() == 0) {
+                CategoryTreeItemVO categoryTreeItemVO = transformListItemToTreeItem(categoryListItemVO);
+
+                fillSubTree(categoryListItemVO, categoryTreeItemVO, mapLongCategoryListItemVO);
+                listCategoryTreeItemVO.add(categoryTreeItemVO);
             }
         }
-
-        return categoryTree;
+        return listCategoryTreeItemVO;
     }
 
-    private Map<Long, CategoryListItemVO> transformListToMap(List<CategoryListItemVO> categoryList) {
-        Map<Long, CategoryListItemVO> categoryMap = new LinkedHashMap<>();
-
-        for (CategoryListItemVO categoryListItemVO : categoryList) {
-            if (categoryListItemVO.getEnable() == 0) {
-                continue;
-            }
-            categoryMap.put(categoryListItemVO.getId(), categoryListItemVO);
-        }
-        return categoryMap;
-    }
-
-    private void fillChildren(CategoryListItemVO categoryListItemVO, CategoryTreeItemVO currentTreeItem, Map<Long, CategoryListItemVO> categoryMap) {
+    private void fillSubTree(CategoryListItemVO categoryListItemVO, CategoryTreeItemVO categoryTreeItemVO, Map<Long, CategoryListItemVO> mapLongCategoryListItemVO) {
         if (categoryListItemVO.getIsParent() == 1) {
-            currentTreeItem.setChildren(new ArrayList<>());
-            Set<Long> keySet = categoryMap.keySet();
-            for (Long key : keySet) {
-                CategoryListItemVO sonCategoryListItemVO = categoryMap.get(key);
-                if (Objects.equals(sonCategoryListItemVO.getParentId(), categoryListItemVO.getId())) {
-                    CategoryTreeItemVO sonCategoryTreeItemVO = convertListItemToTreeItem(sonCategoryListItemVO);
-                    currentTreeItem.getChildren().add(sonCategoryTreeItemVO);
-                    if (sonCategoryListItemVO.getIsParent() == 1) {
-                        fillChildren(sonCategoryListItemVO, sonCategoryTreeItemVO, categoryMap);
-                    }
+            Set<Long> setKey = mapLongCategoryListItemVO.keySet();
+
+            for(Long key : setKey) {
+                CategoryListItemVO sonCategoryListItemVO = mapLongCategoryListItemVO.get(key);
+                if (sonCategoryListItemVO.getParentId() == categoryListItemVO.getId()) {
+                    CategoryTreeItemVO sonCategoryTreeItemVO = transformListItemToTreeItem(sonCategoryListItemVO);
+
+                    fillSubTree(sonCategoryListItemVO, sonCategoryTreeItemVO, mapLongCategoryListItemVO);
+                    categoryTreeItemVO.getChildren().add(sonCategoryTreeItemVO);
                 }
             }
         }
     }
 
-    private CategoryTreeItemVO convertListItemToTreeItem(CategoryListItemVO listItem) {
-        return new CategoryTreeItemVO()
-                .setValue(listItem.getId())
-                .setLabel(listItem.getName());
+    private Map<Long, CategoryListItemVO> transformListToMap(List<CategoryListItemVO> listCategoryListItemVO) {
+        Map<Long, CategoryListItemVO> mapLongCategoryListItemVO = new HashMap<>();
+        for (CategoryListItemVO categoryListItemVO : listCategoryListItemVO) {
+            mapLongCategoryListItemVO.put(categoryListItemVO.getId(), categoryListItemVO);
+        }
+        return mapLongCategoryListItemVO;
+    }
+
+    private CategoryTreeItemVO transformListItemToTreeItem(CategoryListItemVO categoryListItemVO) {
+        CategoryTreeItemVO categoryTreeItemVO = new CategoryTreeItemVO();
+        categoryTreeItemVO.setValue(categoryListItemVO.getId());
+        categoryTreeItemVO.setLabel(categoryListItemVO.getName());
+        return categoryTreeItemVO;
     }
 
 }

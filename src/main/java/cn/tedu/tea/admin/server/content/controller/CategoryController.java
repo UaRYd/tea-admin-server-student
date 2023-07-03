@@ -2,6 +2,7 @@ package cn.tedu.tea.admin.server.content.controller;
 
 import cn.tedu.tea.admin.server.common.web.JsonResult;
 import cn.tedu.tea.admin.server.content.pojo.param.CategoryAddNewParam;
+import cn.tedu.tea.admin.server.content.pojo.vo.CategoryTreeItemVO;
 import cn.tedu.tea.admin.server.content.service.ICategoryService;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.annotations.Api;
@@ -13,6 +14,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -31,5 +34,14 @@ public class CategoryController {
     public JsonResult addNew(CategoryAddNewParam categoryAddNewParam) {
         categoryService.addNew(categoryAddNewParam);
         return JsonResult.ok();
+    }
+
+    @PostMapping("/list-category")
+    @PreAuthorize("hasAuthority('/content/category/list-category')")
+    @ApiOperation("获取分类树")
+    @ApiOperationSupport(order = 200)
+    public JsonResult listCategory() {
+        List<CategoryTreeItemVO> listCategoryTreeItemVO = categoryService.listTree();
+        return JsonResult.ok(listCategoryTreeItemVO);
     }
 }
