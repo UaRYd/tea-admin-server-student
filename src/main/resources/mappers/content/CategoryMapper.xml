@@ -34,11 +34,10 @@
             id, name, parent_id, depth, keywords, sort, icon, enable, is_parent, is_display
         FROM
             content_category
-        WHERE
-            id=#{id}
+
     </select>
 
-    <resultMap id="list"
+    <resultMap id="listResultMap"
                type="cn.tedu.tea.admin.server.content.pojo.vo.list.CategoryListItemVO">
         <id column="id" property="id"/>
         <result column="name" property="name"/>

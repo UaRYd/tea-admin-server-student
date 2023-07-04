@@ -82,6 +82,7 @@ public class CategoryServiceImpl implements ICategoryService {
 
     private void fillSubTree(CategoryListItemVO categoryListItemVO, CategoryTreeItemVO categoryTreeItemVO, Map<Long, CategoryListItemVO> mapLongCategoryListItemVO) {
         if (categoryListItemVO.getIsParent() == 1) {
+            categoryTreeItemVO.setChildren(new ArrayList<>());
             Set<Long> setKey = mapLongCategoryListItemVO.keySet();
 
             for(Long key : setKey) {
